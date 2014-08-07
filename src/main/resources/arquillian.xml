@@ -7,6 +7,10 @@
         <configuration>
             <property name="glassFishHome">C:\glassfish4</property>
             <property name="outputToConsole">true</property>
+            <!--
+            <property name="adminUser">admin</property>
+            <property name="adminPassword">adminadmin</property>
+            -->
         </configuration>
     </container>
 </arquillian>
