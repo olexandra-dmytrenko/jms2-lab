@@ -14,10 +14,17 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Assert;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -121,5 +128,22 @@ public class Jms2Test {
         }
     }
 
-    // Delivery delay, request/response, MDB
+    @Test
+    @InSequence(6)
+    public void testDeliveryDelay() throws InterruptedException, JMSException {
+        // We are using a try with resources here, but in a Java EE
+        // environment we can directly inject a managed JMS context.
+        try (JMSContext jmsContext = myConnectionFactory.createContext()) {
+            long now = System.currentTimeMillis();
+            jmsContext.createProducer()
+                    .setDeliveryDelay(5000)
+                    .send(myQueue, "message6");
+
+            Message message = jmsContext.createConsumer(myQueue).receive();
+            assertEquals("message6", message.getBody(String.class));
+            assertTrue(message.getJMSDeliveryTime() >= (now + 5000));            
+        }
+    }
+
+    // Request/response, MDB
 }

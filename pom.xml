@@ -13,7 +13,6 @@
     
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>    
 
     <dependencies>
@@ -36,14 +35,20 @@
             <artifactId>arquillian-junit-container</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- <dependency> <groupId>org.jboss.arquillian.container</groupId> <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-        <version>1.0.0.CR4</version> <scope>test</scope> </dependency> -->
+        <!--
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-glassfish-managed-3.1</artifactId>
             <version>1.0.0.CR4</version>
             <scope>test</scope>
         </dependency>
+        -->
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-glassfish-remote-3.1</artifactId>
+            <version>1.0.0.CR4</version>
+            <scope>test</scope>
+        </dependency>        
     </dependencies>
 
     <dependencyManagement>
