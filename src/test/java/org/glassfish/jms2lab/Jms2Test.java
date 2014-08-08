@@ -1,6 +1,7 @@
 package org.glassfish.jms2lab;
 
 import java.util.Date;
+import java.util.Map;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.jms.ConnectionFactory;
@@ -14,16 +15,8 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Assert;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,11 +33,19 @@ public class Jms2Test {
     @Resource(lookup = "java:app/jms/MyQueue")
     private Queue myQueue;
 
+    @Resource(lookup = "java:app/jms/MyQueue2")
+    private Queue myQueue2;
+
+    @Resource(lookup = "java:app/jms/RequestQueue")
+    private Queue requestQueue;
+
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap
                 .create(WebArchive.class, "jms2lab.war")
                 .addClass(MessageReceiver.class)
+                .addClass(MyMessageListener.class)
+                .addClass(RequestResponseListener.class)
                 .addAsWebInfResource("web.xml", "web.xml");
     }
 
@@ -141,9 +142,39 @@ public class Jms2Test {
 
             Message message = jmsContext.createConsumer(myQueue).receive();
             assertEquals("message6", message.getBody(String.class));
-            assertTrue(message.getJMSDeliveryTime() >= (now + 5000));            
+            assertTrue(message.getJMSDeliveryTime() >= (now + 5000));
         }
     }
 
-    // Request/response, MDB
+    @Test
+    @InSequence(7)
+    public void testMessageListener() throws InterruptedException {
+        // We are using a try with resources here, but in a Java EE
+        // environment we can directly inject a managed JMS context.
+        try (JMSContext jmsContext = myConnectionFactory.createContext()) {
+            jmsContext.createProducer().send(myQueue2, "message7");
+            Thread.sleep(1000);
+            assertEquals("message7", MyMessageListener.getMessageText());
+        }
+    }
+
+    @Test
+    @InSequence(8)
+    public void testRequestResponse() throws JMSException {
+        // We are using a try with resources here, but in a Java EE
+        // environment we can directly inject a managed JMS context.
+        try (JMSContext jmsContext = myConnectionFactory.createContext()) {
+            Queue responseQueue = jmsContext.createTemporaryQueue();
+            Message request = jmsContext.createTextMessage("request");
+            jmsContext.createProducer()
+                    .setJMSReplyTo(responseQueue)
+                    .send(requestQueue, request);
+            
+            Message response = jmsContext.createConsumer(responseQueue).receive();
+
+            assertEquals("request", response.getBody(Map.class).get("request"));            
+            assertEquals("response", response.getBody(Map.class).get("response"));
+            assertEquals(request.getJMSMessageID(), response.getJMSCorrelationID());
+        }
+    }
 }

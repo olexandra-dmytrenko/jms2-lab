@@ -14,4 +14,16 @@
         <resource-adapter>jmsra</resource-adapter>
         <destination-name>MyQueue</destination-name>
     </jms-destination>
+    <jms-destination>
+        <name>java:app/jms/MyQueue2</name>
+        <interface-name>javax.jms.Queue</interface-name>
+        <resource-adapter>jmsra</resource-adapter>
+        <destination-name>MyQueue2</destination-name>
+    </jms-destination>
+    <jms-destination>
+        <name>java:app/jms/RequestQueue</name>
+        <interface-name>javax.jms.Queue</interface-name>
+        <resource-adapter>jmsra</resource-adapter>
+        <destination-name>RequestQueue</destination-name>
+    </jms-destination>
 </web-app>
