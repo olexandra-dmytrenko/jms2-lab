@@ -16,6 +16,13 @@ Instructions
 * Open NetBeans and start GlassFish (Services -> Servers -> GlassFish -> Start).
 * Open the Maven project under the 'problem' directory in NetBeans. This is the project you will be working on. 
   Simply start reading the instructions in the comments. At this stage you should have a basic understanding of JMS 2
-  and have had explored the JMS 2 Javadocs. You will be basically developing the unit test in the project.
+  and have had explored the JMS 2 Javadocs (if this is not the case you should start with the resources below). You will be 
+  basically developing the unit test in the project.
 * A solution is in the 'solution' directory. Feel free to open this and look at it if you need to. The best way of learning
   is looking at the solution if you are absolutely stuck.
+  
+Resources
+---------
+* [JMS.Next(): JMS 2.0 and Beyond](http://www.slideshare.net/reza_rahman/whats-new-in-java-message-service-2)
+* [JMS 2 Section of Java EE 7 Tutorial](http://docs.oracle.com/javaee/7/tutorial/doc/partmessaging.htm)
+* [JMS 2 Javadocs](http://docs.oracle.com/javaee/7/api/index.html?javax/jms/package-summary.html)
