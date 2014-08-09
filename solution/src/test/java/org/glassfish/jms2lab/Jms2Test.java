@@ -58,7 +58,7 @@ public class Jms2Test {
             jmsContext.createProducer().send(myQueue, "message1");
         }
 
-        assertEquals("message1", messageReceiver.receiveStringMessage());
+        assertEquals("message1", messageReceiver.receiveStringMessage(myQueue));
     }
 
     @Test
