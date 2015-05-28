@@ -95,8 +95,8 @@ public class Jms2Test {
          * show the JMS 2 auto-closable feature :-).
          *
          * In any other proper Java EE component that you write in the lab,
-         * such as an MDB, you can use an injected JMS context. That's what
-         * we do in message receiver utility.
+         * such as an MDB or EJB, you can use an injected JMS context. That's 
+         * what we do in message receiver utility.
          */
         try (JMSContext jmsContext = myConnectionFactory.createContext()) {
             // Write the code to send the message here.
@@ -130,7 +130,6 @@ public class Jms2Test {
         try (JMSContext jmsContext = myConnectionFactory.createContext()) {
             // Your code here.
         }
-
     }
 
     /*
