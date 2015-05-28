@@ -31,5 +31,5 @@ Instructions
 Resources
 ---------
 * [JMS.Next(): JMS 2.0 and Beyond](http://www.slideshare.net/reza_rahman/whats-new-in-java-message-service-2)
-* [JMS 2 Section of Java EE 7 Tutorial](http://docs.oracle.com/javaee/7/tutorial/doc/partmessaging.htm)
+* [JMS 2 Section of Java EE 7 Tutorial](http://docs.oracle.com/javaee/7/tutorial/partmessaging.htm)
 * [JMS 2 Javadocs](http://docs.oracle.com/javaee/7/api/index.html?javax/jms/package-summary.html)
