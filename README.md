@@ -22,8 +22,9 @@ Instructions
   of JMS 2 and have had explored the JMS 2 Javadocs (if this is not the case you should start with the resources below). 
   You will be basically developing the unit test in the project (the tests will fail when you start). To run all the tests
   in NetBeans, right click the unit test file and select "Test File". Running the tests the first time will take some time as the
-  Maven build is invoked for the first time. You will be much better off running each test at a time. You do this by right clicking
-  on a given test method in the editor and selecting "Run Focused Test Method".
+  Maven build is invoked for the first time and all required dependencies are downloaded. You will be much better off running 
+  each test at a time througout the lab. You do this by right clicking on a given test method in the editor and selecting 
+  "Run Focused Test Method".
 * A solution is in the 'solution' directory. Feel free to open this in NetBeans and look at it if you need to. The best way of 
   learning is looking at the solution if you are absolutely stuck.
   
