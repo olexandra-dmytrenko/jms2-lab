@@ -6,9 +6,11 @@ any Java EE 7 compatible application server such as WildFly.
 
 Setup
 -----
+* This lab assumes you are using your own machine. You will need to perform this setup on the machine you will use for the lab.
 * Make sure you have at least JDK 7 installed. The lab was tested with JDK 7.
-* Install NetBeans 8 or above. Make sure you use the Java EE version of NetBeans. During installation, accept all the
-  defaults. This will automatically install GlassFish.
+* Install NetBeans 8 or above. Make sure you use the Java EE version of NetBeans (NetBeans comes in several flavors - we need 
+  the Java EE features). During NetBeans installation, please accept all the default choices. This will automatically install 
+  GlassFish for you.
 * Download this repository, probably as a zip. If using a zip download, unzip somewhere in your file system.
   
 Instructions
