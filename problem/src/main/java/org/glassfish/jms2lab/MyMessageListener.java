@@ -15,7 +15,7 @@ import javax.jms.MessageListener;
             propertyValue = "java:app/jms/MyQueue2")})
 public class MyMessageListener implements MessageListener {
 
-    private static final Logger logger = Logger.getLogger(
+    private static final Logger LOGGER = Logger.getLogger(
             MyMessageListener.class.getName());
 
     private static String messageText = null;
@@ -29,7 +29,7 @@ public class MyMessageListener implements MessageListener {
         try {
             messageText = message.getBody(String.class);
         } catch (JMSException e) {
-            logger.log(Level.SEVERE, "Error procesing JMS message", e);
+            LOGGER.log(Level.SEVERE, "Error procesing JMS message", e);
         }
     }
 }

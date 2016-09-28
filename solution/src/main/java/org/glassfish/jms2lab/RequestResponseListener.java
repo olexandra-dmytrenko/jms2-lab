@@ -19,7 +19,7 @@ import javax.jms.MessageListener;
             propertyValue = "java:app/jms/RequestQueue")})
 public class RequestResponseListener implements MessageListener {
 
-    private static final Logger logger = Logger.getLogger(
+    private static final Logger LOGGER = Logger.getLogger(
             RequestResponseListener.class.getName());
 
     @Inject
@@ -36,7 +36,7 @@ public class RequestResponseListener implements MessageListener {
                     .setJMSCorrelationID(message.getJMSMessageID())
                     .send(message.getJMSReplyTo(), response);
         } catch (JMSException e) {
-            logger.log(Level.SEVERE, "Error procesing JMS message", e);
+            LOGGER.log(Level.SEVERE, "Error procesing JMS message", e);
         }
     }
 }

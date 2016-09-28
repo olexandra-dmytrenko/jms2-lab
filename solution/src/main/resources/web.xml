@@ -3,27 +3,19 @@
          xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <jms-connection-factory>
-        <name>java:app/jms/MyConnectionFactory</name>
-        <interface-name>javax.jms.ConnectionFactory</interface-name>
-        <resource-adapter>jmsra</resource-adapter>
-    </jms-connection-factory>
     <jms-destination>
         <name>java:app/jms/MyQueue</name>
         <interface-name>javax.jms.Queue</interface-name>
-        <resource-adapter>jmsra</resource-adapter>
         <destination-name>MyQueue</destination-name>
     </jms-destination>
     <jms-destination>
         <name>java:app/jms/MyQueue2</name>
         <interface-name>javax.jms.Queue</interface-name>
-        <resource-adapter>jmsra</resource-adapter>
         <destination-name>MyQueue2</destination-name>
     </jms-destination>
     <jms-destination>
         <name>java:app/jms/RequestQueue</name>
         <interface-name>javax.jms.Queue</interface-name>
-        <resource-adapter>jmsra</resource-adapter>
         <destination-name>RequestQueue</destination-name>
     </jms-destination>
 </web-app>

@@ -2,7 +2,6 @@ package org.glassfish.jms2lab;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
-import javax.jms.ConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
 import javax.jms.Queue;
@@ -25,10 +24,10 @@ import org.junit.runner.RunWith;
  * to finish the tests on your own.
  *
  * The tests use Arquillian to run your code against a running
- * GlassFish instance. The instance is assumed to be running on localhost,
- * ports 8080/4848. For the purposes of this lab, you won't need to know much
+ * WildFly instance. The instance is assumed to be running on localhost,
+ * ports 8080/9990. For the purposes of this lab, you won't need to know much
  * about Arquillian - everything has already been setup for you. Once you
- * have GlassFish running, there's no need to stop/start it during the lab.
+ * have WildFly running, there's no need to stop/start it during the lab.
  */
 @RunWith(Arquillian.class)
 public class Jms2Test {
@@ -36,15 +35,8 @@ public class Jms2Test {
     @Inject
     private MessageReceiver messageReceiver;
 
-    /*
-     * Due to a bug that has been filed, Arquillian is unable to inject
-     * the default connection factory bound under
-     * 'java:comp/defaultJMSConnectionFactory'. As a workaround, we are using
-     * a custom connection factory. In a Java EE environment, this won't be
-     * necessary.
-     */
-    @Resource(lookup = "java:app/jms/MyConnectionFactory")
-    private ConnectionFactory myConnectionFactory;
+    @Inject
+    private JMSContext jmsContext;
 
     // These are the three queues we will be using for our tests. They
     // have already been setup for you in the web.xml for the test.
@@ -59,7 +51,7 @@ public class Jms2Test {
 
     /*
      * This factory method defines the actual test artifacts we are deploying
-     * to GlassFish for testing. As you add test artifacts, make sure to
+     * to WildFly for testing. As you add test artifacts, make sure to
      * list them here, typically using the addClass method.
      */
     @Deployment
@@ -85,22 +77,7 @@ public class Jms2Test {
     @Test
     @InSequence(1)
     public void testSendStringMessage() {
-
-        /*
-         * Although Arquillian has some basic injection capabilities, it is not
-         * really a Java EE environment. As a result, it currently cannot inject
-         * a managed JMS context. A bug has been filed to get this fixed. For
-         * now we will need to manually create and manage a JMS context from a
-         * connection factory. Fortunately, this gives us an opportunity to
-         * show the JMS 2 auto-closable feature :-).
-         *
-         * In any other proper Java EE component that you write in the lab,
-         * such as an MDB or EJB, you can use an injected JMS context. That's 
-         * what we do in message receiver utility.
-         */
-        try (JMSContext jmsContext = myConnectionFactory.createContext()) {
-            // Write the code to send the message here.
-        }
+        // Write the code to send the message here.
 
         // assertEquals("message1",
         // messageReceiver.receiveStringMessage(myQueue));
@@ -114,10 +91,8 @@ public class Jms2Test {
     @Test
     @InSequence(2)
     public void testReceiveStringMessage() {
-        try (JMSContext jmsContext = myConnectionFactory.createContext()) {
-            // Write the code to send and then receive the message here.
-            // Assert that you received the same message that you sent.
-        }
+        // Write the code to send and then receive the message here.
+        // Assert that you received the same message that you sent.
     }
 
     /*
@@ -127,9 +102,7 @@ public class Jms2Test {
     @Test
     @InSequence(3)
     public void testSendObjectMessage() {
-        try (JMSContext jmsContext = myConnectionFactory.createContext()) {
-            // Your code here.
-        }
+        // Your code here.
     }
 
     /*
@@ -143,9 +116,7 @@ public class Jms2Test {
     @Test
     @InSequence(4)
     public void testSendEfficientMessage() {
-        try (JMSContext jmsContext = myConnectionFactory.createContext()) {
-            // Your code here.
-        }
+        // Your code here.
     }
 
     /*
@@ -160,10 +131,8 @@ public class Jms2Test {
     @Test
     @InSequence(5)
     public void testSendMessageWithProperties() {
-        try (JMSContext jmsContext = myConnectionFactory.createContext()) {
-            // Your code here. Make sure to assert properties as well as the
-            // payload.
-        }
+        // Your code here. Make sure to assert properties as well as the
+        // payload.
     }
 
     /*
@@ -177,9 +146,7 @@ public class Jms2Test {
     @Test
     @InSequence(6)
     public void testDeliveryDelay() {
-        try (JMSContext jmsContext = myConnectionFactory.createContext()) {
-            // Your code here.
-        }
+        // Your code here.
     }
 
     /*
@@ -195,16 +162,14 @@ public class Jms2Test {
     @Test
     @InSequence(7)
     public void testMessageListener() {
-        try (JMSContext jmsContext = myConnectionFactory.createContext()) {
-            // Your code here.
-            assertEquals("message7", MyMessageListener.getMessageText());
-        }
+        // Your code here.
+        assertEquals("message7", MyMessageListener.getMessageText());
     }
 
     /*
      * In this test, you'll utilize the request/response paradigm in JMS. In
      * this paradigm, you send a message to a request queue and wait for a
-     * response. When you send the request, you set a reply to queue that the
+     * response. When you send the request, you set a "reply to" queue that the
      * response will be sent to. This reply to queue is often a temporary queue
      * alive only for the session. When the recepient receives the request,
      * in addition to using the reply to queue to send a response, they must
@@ -217,8 +182,6 @@ public class Jms2Test {
     @Test
     @InSequence(8)
     public void testRequestResponse() throws JMSException {
-        try (JMSContext jmsContext = myConnectionFactory.createContext()) {
-            // Your code here.
-        }
+        // Your code here.
     }
 }
