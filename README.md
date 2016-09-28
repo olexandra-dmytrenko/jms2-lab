@@ -1,21 +1,22 @@
 JMS 2 Hands on Lab
 ==================
-This hands-on-lab provides a basic introduction to the JMS 2 API included in Java EE 7. The lab uses GlassFish, NetBeans and 
+This hands-on-lab provides a basic introduction to the JMS 2 API included in Java EE 7. The lab uses WildFly, NetBeans and 
 Maven. You could choose to use Eclipse or any other IDE with a little bit of effort. Similarly it should be possible to use
-any Java EE 7 compatible application server such as WildFly.
+any Java EE 7 compatible application server such as GlassFish, JBoss EAP, WebSphere Liberty or WebLogic.
 
 Setup
 -----
 * This lab assumes you are using your own machine. You will need to perform this setup on the machine you will use for the lab.
-* Make sure you have at least JDK 7 installed. The lab was tested with JDK 7.
-* Install NetBeans 8 or above. Make sure you use the Java EE version of NetBeans (NetBeans comes in several flavors - we need 
-  the Java EE features). During NetBeans installation, please accept all the default choices. This will automatically install 
-  GlassFish for you.
+* Make sure you have at least JDK 7 installed. The lab was tested with JDK 8.
+* Install NetBeans 8.1 or above. Make sure you use the Java EE version of NetBeans (NetBeans comes in several flavors - we need 
+  the Java EE features). During NetBeans installation, please accept all the default choices.
+* Please install WildFly 10.1.0.Final. You will need the full Java EE 7 version. All you should need to do is download a zip file and unzip it.
 * Download this repository, probably as a zip. If using a zip download, unzip somewhere in your file system.
   
 Instructions
 ------------
-* Open NetBeans and start GlassFish (Services -> Servers -> GlassFish -> Start).
+* Start WildFly by executing WILFLY_INSTALL_LOCATION/bin/standalone.[sh|bat] --server-config=standalone-full.xml. You can also setup and start 
+  WildFly from NetBeans, this is what we did.
 * Open the Maven project in the 'problem' directory in NetBeans (File -> Open Project). This is the project you will be 
   working on. Simply start reading the instructions in the comments for the 
   [unit test](problem/src/test/java/org/glassfish/jms2lab/Jms2Test.java). At this stage you should have a basic understanding 
