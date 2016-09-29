@@ -1,4 +1,4 @@
-package org.glassfish.jms2lab;
+package io.javaee.guardians.jms2lab;
 
 import java.util.Date;
 import java.util.Map;

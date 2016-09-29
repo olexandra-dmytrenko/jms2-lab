@@ -1,4 +1,4 @@
-package org.glassfish.jms2lab;
+package io.javaee.guardians.jms2lab;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -11,7 +11,7 @@ public class MessageReceiver {
     @Inject
     private JMSContext jmsContext;
 
-    public String receiveStringMessage(Destination  destination) {
+    public String receiveStringMessage(Destination destination) {
         return jmsContext.createConsumer(destination).receiveBody(String.class);
     }
 }

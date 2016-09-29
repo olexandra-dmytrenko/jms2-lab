@@ -1,4 +1,4 @@
-package org.glassfish.jms2lab;
+package io.javaee.guardians.jms2lab;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
