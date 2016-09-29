@@ -19,7 +19,7 @@ Instructions
   WildFly from NetBeans, this is what we did.
 * Open the Maven project in the 'problem' directory in NetBeans (File -> Open Project). This is the project you will be 
   working on. Simply start reading the instructions in the comments for the 
-  [unit test](problem/src/test/java/org/glassfish/jms2lab/Jms2Test.java). At this stage you should have a basic understanding 
+  [unit test](problem/src/test/java/io/javaee/guardians/jms2lab/Jms2Test.java). At this stage you should have a basic understanding 
   of JMS 2 and have had explored the JMS 2 Javadocs (if this is not the case you should start with the resources below). 
   You will be basically developing the unit test in the project (the tests will fail when you start). To run all the tests
   in NetBeans, right click the unit test file and select "Test File". Running the tests the first time will take some time as the
